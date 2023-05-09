@@ -1,3 +1,5 @@
+USE id2061448_mysql;
+
 -- MySQL dump 10.14  Distrib 5.5.68-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: id2061448_mysql
@@ -70,12 +72,12 @@ DROP TABLE IF EXISTS `task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `task` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(11) NOT NULL,
   `task` varchar(50) NOT NULL,
   `st` time(6) NOT NULL,
   `tme` time(6) NOT NULL,
-  `pre` varchar(11) NOT NULL,
+  `pre` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
