@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amovergan-todo-list
+  labels:
+    app: amovergan-todo-list
+spec:
+  selector:
+    matchLabels:
+      app: amovergan-todo-list
+  template:
+    metadata:
+      name: amovergan-todo-list
+      labels:
+        app: amovergan-todo-list
+    spec:
+      containers:
+        - name: amovergan-todo-list-nginx
+          image: bitnami/nginx:latest
+          ports:
+            - containerPort: 443
+
+        - name: amovergan-todo-list-php-fpm
+          image: bitnami/php-fpm
+          ports:
+            - containerPort: 9000
