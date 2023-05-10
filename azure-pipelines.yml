@@ -6,6 +6,8 @@ trigger:
 - master
 - amovergan/*
 
+pr: none
+
 resources:
 - repo: self
 
