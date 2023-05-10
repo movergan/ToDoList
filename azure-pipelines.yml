@@ -34,7 +34,14 @@ stages:
           - task: Docker@2
             inputs:
               containerRegistry: 'gcr.altenar-dev-ppenvs'
-              repository: 'amovergan-todo'
+              command: 'login'
+              addPipelineData: false
+              addBaseImageData: false
+
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'gcr.altenar-dev-ppenvs'
+              repository: 'altenar-dev-ppenvs/amovergan-todo'
               command: 'push'
 
 
