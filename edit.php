@@ -17,7 +17,7 @@ header('location:login.php');
 	if(isset($_REQUEST['eid']))
 	{
 		 $id= $_REQUEST['eid'];
-		 $sel= "select* from task where id=$id";
+		 $sel= "select * from task where id=$id";
 		 $res=$conn->query($sel);
 		 $re=$res->fetch_object();
 
