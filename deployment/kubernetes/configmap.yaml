@@ -3,4 +3,21 @@ kind: ConfigMap
 metadata:
   name: nginx-conf
 data:
-  nginx.conf: |
+  todolist.conf: |
+    server {
+      listen 0.0.0.0:80;
+      server_name todo.com;
+
+      root /app;
+
+      location / {
+        try_files $uri $uri/index.php;
+      }
+
+      location ~ \.php$ {
+        # fastcgi_pass [PHP_FPM_LINK_NAME]:9000;
+        fastcgi_pass localhost:9000;
+        fastcgi_index index.php;
+        include fastcgi.conf;
+      }
+    }

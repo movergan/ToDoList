@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amovergan-todo-list-mysql
+  labels:
+    app: amovergan-todo-list-mysql
+spec:
+  selector:
+    matchLabels:
+      app: amovergan-todo-list-mysql
+  template:
+    metadata:
+      name: amovergan-todo-list-mysql
+      labels:
+        app: amovergan-todo-list-mysql
+    spec:
+      containers:
+        - name: amovergan-todo-list-mysql
+          image: bitnami/mysql:latest
+          env:
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /docker-entrypoint-initdb.d/
+          ports:
+            - containerPort: 3306
+      volumes:
+        - name: config-volume
+          configMap:
+            name: mysql-migrations
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  labels:
+    app: amovergan-todo-list-mysql
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3306
+      targetPort: 3306
+      protocol: TCP
+      name: mysql
+  selector:
+    app: amovergan-todo-list-mysql

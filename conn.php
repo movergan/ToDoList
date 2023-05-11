@@ -2,7 +2,7 @@
 
 
  
-$host= "localhost";
+$host= "mysql";
 $user = "id2061448_yatin";
 $pass ="12345678";
 $dbnm ="id2061448_mysql";

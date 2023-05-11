@@ -17,10 +17,14 @@ spec:
       containers:
         - name: amovergan-todo-list-nginx
           image: bitnami/nginx:latest
+          volumeMounts:
+            - name: config-volume
+              mountPath: /opt/bitnami/nginx/conf/server_blocks/
           ports:
-            - containerPort: 443
-
+            - containerPort: 8080
         - name: amovergan-todo-list-php-fpm
-          image: bitnami/php-fpm
-          ports:
-            - containerPort: 9000
+          image: gcr.io/altenar-dev-ppenvs/amovergan-todo
+      volumes:
+        - name: config-volume
+          configMap:
+            name: nginx-conf
