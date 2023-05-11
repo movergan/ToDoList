@@ -5,7 +5,7 @@ metadata:
 data:
   todolist.conf: |
     server {
-      listen 0.0.0.0:80;
+      listen 0.0.0.0:8080;
       server_name todo.com;
 
       root /app;
