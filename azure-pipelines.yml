@@ -29,4 +29,6 @@ stages:
               repository: 'altenar-dev-ppenvs/amovergan-todo'
               command: 'buildAndPush'
               Dockerfile: '**/Dockerfile'
-              tags: '$(tag)'
+              tags: |
+                $(tag)
+                latest
