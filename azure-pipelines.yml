@@ -1,0 +1,41 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+  - amovergan/*
+  - master
+
+pr: none
+
+resources:
+  - repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+  - stage: Build
+    displayName: Build image
+    jobs:
+      - job: Build
+        displayName: Build
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'gcr.altenar-dev-ppenvs'
+              repository: 'altenar-dev-ppenvs/amovergan-todo'
+              command: 'buildAndPush'
+              Dockerfile: '**/Dockerfile'
+              tags: |
+                $(tag)
+                latest
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                # Write your commands here
+                
+                echo 'Hello world'

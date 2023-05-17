@@ -1,0 +1,8 @@
+Dockerfile
+.idea
+deployment
+migrations
+.gitignore
+azure-pipelines.yml
+docker-compose.yaml
+README.md
